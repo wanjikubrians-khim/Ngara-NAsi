@@ -5,11 +5,37 @@ function closeMenu(){
   document.getElementById('mobileMenu').classList.remove('open');
 }
 
-function submitForm(e){
+async function submitForm(e){
   e.preventDefault();
-  document.getElementById('bookingForm').style.display='none';
-  document.getElementById('formSuccess').style.display='block';
-  showToast();
+  const form = e.target;
+  const formData = new FormData(form);
+  formData.append('_captcha', 'false');
+  formData.append('_subject', 'Ng\'ara Supuu Booking Request');
+  formData.append('_template', 'table');
+
+  const toastEl = document.getElementById('toast');
+  try {
+    const res = await fetch('https://formsubmit.co/ajax/ngarafresh@yopmail.com', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: formData
+    });
+    const json = await res.json();
+
+    if (!res.ok || !json.success) {
+      throw new Error(json.message || 'Form submit failed');
+    }
+
+    form.reset();
+    form.style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+    toastEl.textContent = 'Booking request sent—check your inbox shortly.';
+    showToast();
+  } catch (error) {
+    console.error('Booking submission error:', error);
+    toastEl.textContent = 'Could not send request: use WhatsApp/call instead.';
+    showToast();
+  }
 }
 
 function showToast(){
