@@ -204,16 +204,16 @@
         <div class="form-row">
           <div class="form-group">
             <label>Your Name *</label>
-            <input type="text" placeholder="e.g. Jane Wanjiru" required/>
+            <input type="text" name="name" placeholder="e.g. Jane Wanjiru" required/>
           </div>
           <div class="form-group">
             <label>Phone Number *</label>
-            <input type="tel" placeholder="07XX XXX XXX" required/>
+            <input type="tel" name="phone" placeholder="07XX XXX XXX" required/>
           </div>
         </div>
         <div class="form-group">
           <label>Service Needed *</label>
-          <select required>
+          <select name="service" required>
             <option value="" disabled selected>Select a service...</option>
             <option>Laundry (machine wash)</option>
             <option>Ironing / Pressing</option>
@@ -230,11 +230,11 @@
         <div class="form-row">
           <div class="form-group">
             <label>Preferred Date</label>
-            <input type="date"/>
+            <input type="date" name="date"/>
           </div>
           <div class="form-group">
             <label>Preferred Time</label>
-            <select>
+            <select name="time">
               <option>Morning (8am–12pm)</option>
               <option>Afternoon (12pm–5pm)</option>
               <option>Evening (5pm–8pm)</option>
@@ -243,11 +243,11 @@
         </div>
         <div class="form-group">
           <label>Your Location (estate/area)</label>
-          <input type="text" placeholder="e.g. Kasarani, Roysambu"/>
+          <input type="text" name="location" placeholder="e.g. Kasarani, Roysambu"/>
         </div>
         <div class="form-group">
           <label>Extra Notes</label>
-          <textarea placeholder="Any special instructions, e.g. delicate fabrics, specific rooms..."></textarea>
+          <textarea name="notes" placeholder="Any special instructions, e.g. delicate fabrics, specific rooms..."></textarea>
         </div>
         <button type="submit" class="form-submit">🚀 Send Booking Request</button>
       </form>
