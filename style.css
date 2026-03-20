@@ -71,7 +71,7 @@ nav{
 .hamburger span{width:22px;height:2px;background:var(--text);border-radius:2px;transition:.3s;}
 
 /* ─── HERO ─── */
-..hero{
+.hero{
   min-height:100vh;
   display:flex;flex-direction:column;justify-content:center;
   padding:100px 5% 60px;
