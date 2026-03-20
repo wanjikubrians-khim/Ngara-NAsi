@@ -75,7 +75,8 @@ nav{
   min-height:100vh;
   display:flex;flex-direction:column;justify-content:center;
   padding:100px 5% 60px;
-  background: url('office clean.jpeg') center/cover no-repeat;
+  background: url('Affordable Office and Building Cleaning Services _ NJ _ PA.jpeg') center/cover no-repeat;
+  background-attachment: fixed;
   position:relative;overflow:hidden;
 }
 
