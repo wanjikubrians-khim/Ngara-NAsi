@@ -15,7 +15,7 @@ async function submitForm(e) {
 
   const toastEl = document.getElementById('toast');
   try {
-    const res = await fetch('https://formsubmit.co/ajax/ngaranasi@yopmail.com', {
+    const res = await fetch('https://formsubmit.co/ajax/ngaranasiservices@gmail.com', {
       method: 'POST',
       headers: { 'Accept': 'application/json' },
       body: formData
