@@ -9,20 +9,19 @@ async function submitForm(e) {
   e.preventDefault();
   const form = e.target;
   const formData = new FormData(form);
-  formData.append('_captcha', 'false');
-  formData.append('_subject', 'Ng\'ara Nasi Booking Request');
-  formData.append('_template', 'table');
+  formData.append('access_key', 'e5fa819a-4227-4e26-ba03-2a3ab9205a94');
+  formData.append('subject', "Ng'ara Nasi Booking Request");
+  formData.append('from_name', 'Ng\'ara Nasi');
 
   const toastEl = document.getElementById('toast');
   try {
-    const res = await fetch('https://formsubmit.co/ajax/ngaranasiservices@gmail.com', {
+    const res = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
-      headers: { 'Accept': 'application/json' },
       body: formData
     });
     const json = await res.json();
 
-    if (!res.ok || !json.success) {
+    if (!json.success) {
       throw new Error(json.message || 'Form submit failed');
     }
 
