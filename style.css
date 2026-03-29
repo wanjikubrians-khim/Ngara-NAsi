@@ -733,24 +733,19 @@ footer{
 }
 
 @media(max-width:600px){
+  .hero{
+    min-height:unset;
+    padding:80px 5% 20px;                    /* CHANGED: 80px top to clear fixed nav */
+  }
   .hero h1{font-size:2.2rem;}
   .hero-actions{flex-direction:column;}
   .hero-stats{gap:20px;}
   .form-row{grid-template-columns:1fr;}
   footer{flex-direction:column;text-align:center;}
   .footer-links{justify-content:center;}
-}
 
-@media(max-width:600px){
-  .hero{
-    padding:10px 5% 60px;                    /* ADDED: tighter top and bottom on mobile */
-  }
-}
-
-@media(max-width:600px){
-  .gallery-item{
-    display:none;                            
-  }
+  /* gallery */
+  .gallery-item{display:none;}
 
   .gallery-album-preview{
     display:flex;
@@ -765,7 +760,7 @@ footer{
     position:relative;
     width:340px;
     height:280px;
-    margin-bottom:24px;
+    margin:0 auto 24px;                      /* CHANGED: auto left/right centers it */
   }
 
   .album-card{
@@ -783,12 +778,12 @@ footer{
     height:100%;
     object-fit:cover;
     filter:none;
-    transform:scale(1.05);                   
+    transform:scale(1.05);
   }
 
-  .card1{ top:0; left:10px; z-index:3; }
-  .card2{ top:8px; left:20px; z-index:2; background:var(--teal); opacity:0.6; }
-  .card3{ top:16px; left:30px; z-index:1; background:var(--gold); opacity:0.4; }
+  .card1{top:0;left:0;right:0;margin:auto;z-index:3;}   /* CHANGED: centered */
+  .card2{top:8px;left:0;right:-20px;margin:auto;z-index:2;background:var(--teal);opacity:0.6;}
+  .card3{top:16px;left:0;right:-40px;margin:auto;z-index:1;background:var(--gold);opacity:0.4;}
 
   .gallery-view-all{
     background:var(--teal);
@@ -801,15 +796,9 @@ footer{
     cursor:pointer;
     box-shadow:0 4px 16px rgba(0,0,0,.2);
   }
-}
 
-@media(min-width:601px){
-  .gallery-album-preview{ display:none; }   
-}
-
-@media(max-width:600px){
   .gallery-view-less{
-    display:none;                            
+    display:none;
     width:100%;
     margin-top:16px;
     justify-content:center;
@@ -825,8 +814,10 @@ footer{
 }
 
 @media(min-width:601px){
-  .gallery-view-less{ display:none; }
+  .gallery-album-preview{display:none;}
+  .gallery-view-less{display:none;}
 }
+
 /* Mobile Nav */
 .mobile-menu{
   display:none;
