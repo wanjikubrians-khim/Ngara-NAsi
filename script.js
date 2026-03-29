@@ -10,12 +10,12 @@ async function submitForm(e){
   const form = e.target;
   const formData = new FormData(form);
   formData.append('_captcha', 'false');
-  formData.append('_subject', 'Ng\'ara Supuu Booking Request');
+  formData.append('_subject', 'Ng\'ara Nasi Booking Request');
   formData.append('_template', 'table');
 
   const toastEl = document.getElementById('toast');
   try {
-    const res = await fetch('https://formsubmit.co/ajax/ngarafresh@yopmail.com', {
+    const res = await fetch('https://formsubmit.co/ajax/ngaranasi@yopmail.com', {
       method: 'POST',
       headers: { 'Accept': 'application/json' },
       body: formData

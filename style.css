@@ -39,7 +39,7 @@ nav{
 }
 
 .nav-logo{
-  font-family:'Syne',sans-serif;
+  /*font-family:'Syne',sans-serif;*/
   font-size:1.3rem;font-weight:800;
   color:var(--teal);
   text-decoration:none;
@@ -73,8 +73,9 @@ nav{
 /* ─── HERO ─── */
 .hero{
   min-height:100vh;
-  display:flex;flex-direction:column;justify-content:center;
-  padding:100px 5% 60px;
+  display:flex;
+  align-items:center;
+  padding:100px 5% 80px;                     /* CHANGED: back to simple 5%, clamp was too aggressive */
   background: url('Affordable Office and Building Cleaning Services _ NJ _ PA.jpeg') center/cover no-repeat;
   background-attachment: fixed;
   position:relative;overflow:hidden;
@@ -106,7 +107,7 @@ nav{
 .hero-blob1{
   position:absolute;top:-80px;right:-100px;
   width:500px;height:500px;
-  background:radial-gradient(circle,rgba(15,123,108,.12) 0%,transparent 70%);
+  background:radial-gradient(circle,rgba(15,123,108,.12) 100%,transparent 70%);
   border-radius:50%;
   animation:float1 8s ease-in-out infinite;
 }
@@ -114,7 +115,7 @@ nav{
 .hero-blob2{
   position:absolute;bottom:-60px;left:-60px;
   width:350px;height:350px;
-  background:radial-gradient(circle,rgba(232,160,32,.14) 0%,transparent 70%);
+  background:radial-gradient(circle,rgba(232,160,32,.14) 100%,transparent 70%);
   border-radius:50%;
   animation:float2 10s ease-in-out infinite;
 }
@@ -123,12 +124,24 @@ nav{
 @keyframes float2{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(18px) scale(.97);}}
 
 .hero-inner{
-  max-width:680px;
+  flex:0 1 55%;                              
+  max-width:650px;                          
   position:relative;z-index:1;
   animation:heroIn .9s cubic-bezier(.22,1,.36,1) both;
 }
 
 @keyframes heroIn{from{opacity:0;transform:translateY(32px);}to{opacity:1;transform:none;}}
+
+.hero-content{
+  display:flex;                              /* CHANGED: was grid */
+  align-items:center;
+  justify-content:center;
+  gap:4%;                                    /* CHANGED: was 48px, now scales with screen */
+  width:100%;
+  position:relative;
+  z-index:1;
+}
+
 
 .hero-badge{
   display:inline-flex;align-items:center;gap:6px;
@@ -140,7 +153,6 @@ nav{
 }
 
 .hero h1{
-  font-family:'Syne',sans-serif;
   font-size:clamp(2.6rem,6vw,4.2rem);
   font-weight:800;
   line-height:1.08;
@@ -191,7 +203,7 @@ nav{
 
 .stat{display:flex;flex-direction:column;}
 .stat-num{
-  font-family:'Syne',sans-serif;
+  /* font-family:'Syne',sans-serif; */
   font-size:1.7rem;font-weight:800;
   color:var(--teal);
   line-height:1;
@@ -200,9 +212,15 @@ nav{
 
 /* ─── FLOATING CARDS (hero visual) ─── */
 .hero-visual{
-  position:absolute;right:5%;top:50%;transform:translateY(-50%);
-  display:grid;grid-template-columns:1fr 1fr;gap:12px;
-  width:320px;
+  flex:0 1 35%;                              /* CHANGED: 35% of hero width, can shrink */
+  position:static;
+  transform:none;
+  align-self:flex-end;
+  margin-bottom:-20px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  width:350px;
   animation:heroIn 1.1s .2s cubic-bezier(.22,1,.36,1) both;
 }
 
@@ -230,6 +248,17 @@ nav{
   color:var(--teal);
 }
 
+@media(max-width:900px){
+  .hero-content{
+    flex-direction:column;
+  }
+  .hero-visual{
+    align-self:auto;
+    margin-bottom:0;
+    width:100%;
+  }
+}
+
 /* ─── SECTION BASE ─── */
 section{padding:80px 5%;}
 
@@ -243,7 +272,7 @@ section{padding:80px 5%;}
 }
 
 .section-title{
-  font-family:'Syne',sans-serif;
+  /*font-family:'Syne',sans-serif; */
   font-size:clamp(1.8rem,4vw,2.6rem);
   font-weight:800;
   line-height:1.12;
@@ -339,7 +368,7 @@ section{padding:80px 5%;}
 .sc-icon.c-sky{background:var(--sky-lt);}
 .sc-icon.c-lime{background:var(--lime-lt);}
 
-.sc-name{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:6px;}
+.sc-name{/*font-family:'Syne',sans-serif;*/font-size:1.05rem;font-weight:700;margin-bottom:6px;}
 .sc-desc{font-size:0.83rem;color:var(--muted);line-height:1.55;margin-bottom:14px;}
 .sc-price{
   display:inline-block;
@@ -437,7 +466,7 @@ section{padding:80px 5%;}
 }
 
 .form-title{
-  font-family:'Syne',sans-serif;
+  /*font-family:'Syne',sans-serif;*/
   font-size:1.3rem;font-weight:800;
   margin-bottom:24px;color:var(--text);
 }
@@ -575,7 +604,7 @@ section{padding:80px 5%;}
 .av-card:nth-child(4){background:var(--sky-lt);}
 
 .av-icon{font-size:2rem;margin-bottom:10px;}
-.av-num{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--text);}
+.av-num{/*font-family:'Syne',sans-serif;*/font-size:1.6rem;font-weight:800;color:var(--text);}
 .av-label{font-size:0.75rem;color:var(--muted);margin-top:2px;font-weight:500;}
 
 .about-text .section-sub{margin-bottom:24px;}
@@ -666,7 +695,7 @@ footer{
 }
 
 .footer-brand{
-  font-family:'Syne',sans-serif;
+  /*font-family:'Syne',sans-serif;*/
   font-size:1.2rem;font-weight:800;
   color:#fff;
 }
