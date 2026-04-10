@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ngara Nasi – Flyer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+
+<style>
+  :root{
+    --teal:#0c7a6d;
+    --teal2:#0fa396;
+    --teal-lt:#e4f5f3;
+    --teal-md:#b2e4df;
+    --gold:#e8a020;
+    --gold-lt:#fef3dc;
+    --white:#fff;
+    --text:#0f1f1d;
+    --muted:#5a7571;
+    --border:#d0ece9;
+    --bg:#f6fcfb;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:#dceeed;
+    min-height:100vh;
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    padding:40px 20px;
+    font-family:'DM Sans',sans-serif;
+  }
+  .hint{font-size:.75rem;color:#6a8a88;margin-bottom:18px;letter-spacing:.5px;}
+
+  .flyer{
+    width:420px;
+    background:var(--white);
+    border-radius:6px;
+    overflow:hidden;
+    box-shadow:0 24px 64px rgba(0,0,0,.16),0 4px 16px rgba(0,0,0,.08);
+  }
+
+  /* TOP */
+  .top{
+    background:var(--teal);
+    padding:30px 30px 24px;
+    position:relative;overflow:hidden;
+  }
+  .top::before{
+    content:'';position:absolute;
+    top:-60px;right:-60px;
+    width:180px;height:180px;
+    background:rgba(255,255,255,.07);border-radius:50%;
+  }
+  .top::after{
+    content:'';position:absolute;
+    bottom:-40px;left:40px;
+    width:120px;height:120px;
+    background:rgba(255,255,255,.05);border-radius:50%;
+  }
+
+  .logo-row{
+    display:flex;align-items:center;gap:11px;
+    margin-bottom:4px;position:relative;z-index:1;
+  }
+  .logo-icon{
+    width:46px;height:46px;
+    background:rgba(255,255,255,.15);
+    border-radius:13px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:24px;
+    border:1px solid rgba(255,255,255,.2);
+  }
+  .biz-name{
+    font-family:'Playfair Display',serif;
+    font-size:2.1rem;font-weight:900;
+    color:var(--white);line-height:1;
+    letter-spacing:-.3px;
+  }
+  .biz-name span{color:var(--gold);}
+  .tagline{
+    font-size:.75rem;
+    color:rgba(255,255,255,.7);
+    font-weight:300;letter-spacing:1px;
+    text-transform:uppercase;
+    margin-top:5px;
+    position:relative;z-index:1;
+  }
+
+  /* BODY */
+  .body{padding:20px 28px 22px;}
+
+  .lbl{
+    font-size:.62rem;font-weight:700;
+    letter-spacing:1.3px;text-transform:uppercase;
+    color:var(--teal);margin-bottom:10px;
+  }
+
+  .svcs{
+    display:grid;grid-template-columns:1fr 1fr;gap:7px;
+    margin-bottom:18px;
+  }
+  .svc{
+    display:flex;align-items:flex-start;gap:7px;
+    background:var(--teal-lt);
+    border:1px solid var(--teal-md);
+    border-radius:9px;padding:9px 11px;
+  }
+  .svc-ico{font-size:14px;line-height:1;margin-top:2px;}
+  .svc-name{font-size:.77rem;font-weight:700;color:var(--text);}
+  .svc-note{font-size:.63rem;color:var(--muted);margin-top:1px;}
+  .svc-price{font-size:.68rem;font-weight:700;color:var(--teal);margin-top:3px;}
+
+  /* CONTACT */
+  .contact{
+    background:var(--teal);
+    border-radius:12px;
+    padding:16px 18px;
+    margin-top:16px;
+  }
+  .ct-lbl{
+    font-size:.62rem;font-weight:700;letter-spacing:1.2px;
+    text-transform:uppercase;color:rgba(255,255,255,.55);
+    margin-bottom:11px;
+  }
+  .ct-row{
+    display:flex;align-items:center;gap:10px;margin-bottom:8px;
+  }
+  .ct-row:last-child{margin-bottom:0;}
+  .ct-ico{
+    width:28px;height:28px;min-width:28px;
+    background:rgba(255,255,255,.15);
+    border-radius:8px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;
+  }
+  .ct-sub{font-size:.63rem;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.5px;margin-bottom:1px;}
+  .ct-val{font-size:.86rem;font-weight:700;color:var(--white);}
+
+  /* QR ROW */
+  .qr-row{
+    display:flex;align-items:center;gap:12px;
+    margin-top:12px;
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:10px;
+    padding:10px 14px;
+  }
+  #flyer-qr{background:var(--white);border-radius:6px;padding:4px;flex-shrink:0;}
+  .qr-info .qi-lbl{font-size:.62rem;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px;}
+  .qr-info .qi-val{font-size:.82rem;font-weight:700;color:var(--white);}
+  .qr-info .qi-sub{font-size:.68rem;color:rgba(255,255,255,.6);margin-top:2px;}
+
+  /* FOOTER */
+  .foot{
+    background:var(--bg);
+    border-top:1px solid var(--border);
+    padding:10px 28px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .foot-loc{font-size:.7rem;color:var(--muted);}
+  .foot-loc strong{color:var(--teal);font-weight:700;}
+  .mpesa{
+    display:flex;align-items:center;gap:5px;
+    background:var(--teal-lt);
+    border:1px solid var(--teal-md);
+    padding:3px 10px;border-radius:20px;
+    font-size:.68rem;font-weight:700;color:var(--teal);
+  }
+
+  @media print{
+    body{background:white;padding:0;}
+    .hint{display:none;}
+    .flyer{box-shadow:none;border-radius:0;width:148mm;}
+  }
+</style>
+</head>
+<body>
+
+<!--<p class="hint">💡 Open in browser → Ctrl+P / Cmd+P → set paper to A5 to print</p>-->
+
+<div class="flyer">
+
+  <div class="top">
+    <div class="logo-row">
+      <div class="logo-icon">🧺</div>
+      <div class="biz-name">Ngara <span>Nasi</span></div>
+    </div>
+    <div class="tagline">Professional Cleaning & Laundry · Roysambu, Nairobi</div>
+  </div>
+
+  <div class="body">
+
+    <div class="lbl">Our Services & Prices</div>
+    <div class="svcs">
+      <div class="svc"><span class="svc-ico">🫧</span><div><div class="svc-name">Laundry</div><div class="svc-note">Machine wash & dry</div><div class="svc-price">KSH 50–80/kg</div></div></div>
+      <div class="svc"><span class="svc-ico">👔</span><div><div class="svc-name">Ironing</div><div class="svc-note">Crisp & neat</div><div class="svc-price">KSH 20+/piece</div></div></div>
+      <div class="svc"><span class="svc-ico">🛋️</span><div><div class="svc-name">Sofa Clean</div><div class="svc-note">Steam deep clean</div><div class="svc-price">KSH 1,000+</div></div></div>
+      <div class="svc"><span class="svc-ico">🛏️</span><div><div class="svc-name">Mattress</div><div class="svc-note">Sanitize & deodorize</div><div class="svc-price">KSH 500+</div></div></div>
+      <div class="svc"><span class="svc-ico">🏠</span><div><div class="svc-name">House Clean</div><div class="svc-note">General & deep</div><div class="svc-price">KSH 1,000+</div></div></div>
+      <div class="svc"><span class="svc-ico">🏢</span><div><div class="svc-name">Office Clean</div><div class="svc-note">After hours</div><div class="svc-price">KSH 1,500+</div></div></div>
+      <div class="svc"><span class="svc-ico">🔑</span><div><div class="svc-name">Move In/Out</div><div class="svc-note">Full property</div><div class="svc-price">KSH 2,000+</div></div></div>
+      <div class="svc"><span class="svc-ico">🏡</span><div><div class="svc-name">Airbnb</div><div class="svc-note">Turnover clean</div><div class="svc-price">KSH 1,500+</div></div></div>
+    </div>
+
+    <div class="contact">
+      <div class="ct-lbl">📞 Get in Touch</div>
+      <div class="ct-row">
+        <div class="ct-ico">📱</div>
+        <div><div class="ct-sub">WhatsApp / Call / SMS</div><div class="ct-val">+254 791 020 406</div></div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-ico">✉️</div>
+        <div><div class="ct-sub">Email</div><div class="ct-val">ngaranasiservices@gmail.com</div></div>
+      </div>
+      <div class="qr-row">
+        <div id="flyer-qr"></div>
+        <div class="qr-info">
+          <div class="qi-lbl">📱 Scan to Book Online</div>
+          <div class="qi-val">ngaranasi.vercel.app</div>
+          <div class="qi-sub">Point your camera to visit our booking page</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="foot">
+    <div class="foot-loc">📍 <strong>Roysambu</strong>, Nairobi</div>
+    <div class="mpesa">✅ M-Pesa Accepted</div>
+  </div>
+
+</div>
+
+<script>
+// Self-contained QR Code generator (no CDN needed)
+// Encodes URL into a QR matrix and draws it as inline SVG
+(function(){
+  // --- Minimal QR encoder for short URLs (version 3, ECC M) ---
+  // We'll use a precomputed matrix approach for our specific URL
+  // For robustness, using a small reed-solomon QR lib inline
+
+  function drawQR(elementId, url, size, dark, light){
+    // Use canvas-based approach with manual bit matrix
+    // We encode the URL using QR alphanumeric/byte mode
+    const el = document.getElementById(elementId);
+    if(!el) return;
+
+    // Build QR via the standard algorithm (version auto-select, ECC M)
+    const qr = createQR(url, 'M');
+    const n = qr.length;
+    const cell = Math.floor(size / n);
+    const actual = cell * n;
+
+    let svg = `<svg width="${actual}" height="${actual}" xmlns="http://www.w3.org/2000/svg" style="display:block;border-radius:4px;">`;
+    svg += `<rect width="${actual}" height="${actual}" fill="${light}"/>`;
+    for(let r=0;r<n;r++){
+      for(let c=0;c<n;c++){
+        if(qr[r][c]){
+          svg += `<rect x="${c*cell}" y="${r*cell}" width="${cell}" height="${cell}" fill="${dark}"/>`;
+        }
+      }
+    }
+    svg += '</svg>';
+    el.innerHTML = svg;
+  }
+
+  // ---- Minimal QR Code generator ----
+  // Based on the QR spec, supports byte mode, versions 1-10, ECC L/M/Q/H
+  function createQR(text, ecLevel){
+    const ec = {L:1,M:0,Q:3,H:2}[ecLevel]||0;
+    const bytes = toUTF8Bytes(text);
+    const version = selectVersion(bytes.length, ec);
+    const data = encodeData(bytes, version, ec);
+    const matrix = buildMatrix(data, version);
+    return applyBestMask(matrix, version, ec);
+  }
+
+  function toUTF8Bytes(str){
+    const out=[];
+    for(let i=0;i<str.length;i++){
+      let c=str.charCodeAt(i);
+      if(c<0x80) out.push(c);
+      else if(c<0x800){out.push(0xc0|(c>>6),0x80|(c&0x3f));}
+      else{out.push(0xe0|(c>>12),0x80|((c>>6)&0x3f),0x80|(c&0x3f));}
+    }
+    return out;
+  }
+
+  const EC_CODEWORDS=[
+    // [version][ec_level] = [total_codewords, ec_per_block, blocks]
+    null,
+    [[7,19,1],[10,16,1],[13,13,1],[17,9,1]],   // v1
+    [[10,34,1],[16,28,1],[22,22,1],[28,16,1]],  // v2
+    [[15,55,1],[26,44,1],[18,17,2],[22,13,2]],  // v3
+    [[20,80,1],[18,32,2],[26,24,2],[16,9,4]],   // v4
+    [[26,108,1],[24,43,2],[18,15,2],[22,11,2]], // v5  (2+2 blocks)
+    [[18,68,2],[16,27,4],[24,19,4],[28,15,4]],  // v6
+    [[20,78,2],[18,31,4],[18,14,2],[26,13,4]],  // v7
+    [[24,97,2],[22,38,2],[22,18,4],[26,14,4]],  // v8
+    [[30,116,2],[22,36,3],[20,16,4],[24,12,4]], // v9
+    [[18,68,4],[26,43,4],[24,19,6],[28,15,6]]   // v10
+  ];
+
+  function selectVersion(byteLen, ec){
+    for(let v=1;v<=10;v++){
+      const [,cw]=EC_CODEWORDS[v][ec];
+      // data capacity in bytes (codewords minus ec)
+      const totalBlocks = EC_CODEWORDS[v][ec][2];
+      const ecPerBlock  = EC_CODEWORDS[v][ec][1]; // actually this is data codewords per... let me redo
+
+      // simpler capacity table [version][ecLevel] = data bytes
+      const CAP = [0,
+        [17,13,9,7],[32,22,16,11],[53,36,26,19],[78,50,36,28],
+        [106,64,46,33],[134,84,60,43],[154,93,66,50],[192,122,86,64],
+        [230,154,100,84],[271,178,122,93],[321,207,154,114]
+      ];
+      if(v<=10 && CAP[v][ec] >= byteLen+2) return v; // +2 for mode+terminator overhead approx
+    }
+    return 5; // fallback
+  }
+
+  // Simplified: use a well-known lookup for data capacity
+  const DATA_CAP=[0,
+    [17,13,9,7],[32,22,16,11],[53,36,26,19],[78,50,36,28],
+    [106,64,46,33],[134,84,60,43],[154,93,66,50],[192,122,86,64],
+    [230,154,100,84],[271,178,122,93],[321,207,154,114]
+  ];
+
+  function selectVersion2(byteLen, ec){
+    for(let v=1;v<=10;v++){
+      if(DATA_CAP[v][ec]>=byteLen+3) return v;
+    }
+    return 10;
+  }
+
+  // EC codewords per block and block counts [version][ec] = {ecb, b1count, b1data, b2count, b2data}
+  const BLOCKS=[null,
+    [{ecb:7,b1:1,d1:19},{ecb:10,b1:1,d1:16},{ecb:13,b1:1,d1:13},{ecb:17,b1:1,d1:9}],
+    [{ecb:10,b1:1,d1:34},{ecb:16,b1:1,d1:28},{ecb:22,b1:1,d1:22},{ecb:28,b1:1,d1:16}],
+    [{ecb:15,b1:1,d1:55},{ecb:26,b1:1,d1:44},{ecb:18,b1:2,d1:17},{ecb:22,b1:2,d1:13}],
+    [{ecb:20,b1:1,d1:80},{ecb:18,b1:2,d1:32},{ecb:26,b1:2,d1:24},{ecb:16,b1:4,d1:9}],
+    [{ecb:26,b1:1,d1:108},{ecb:24,b1:2,d1:43},{ecb:18,b1:2,d1:15,b2:2,d2:16},{ecb:22,b1:2,d2:11,b2:2,d2:12}],
+    [{ecb:18,b1:2,d1:68},{ecb:16,b1:4,d1:27},{ecb:24,b1:4,d1:19},{ecb:28,b1:4,d1:15}],
+    [{ecb:20,b1:2,d1:78},{ecb:18,b1:4,d1:31},{ecb:18,b1:2,d1:14,b2:4,d2:15},{ecb:26,b1:4,d1:13,b2:1,d2:14}],
+    [{ecb:24,b1:2,d1:97},{ecb:22,b1:2,d1:38,b2:2,d2:39},{ecb:22,b1:4,d1:18,b2:2,d2:19},{ecb:26,b1:4,d1:14,b2:2,d2:15}],
+    [{ecb:30,b1:2,d1:116},{ecb:22,b1:3,d1:36,b2:2,d2:37},{ecb:20,b1:4,d1:16,b2:4,d2:17},{ecb:24,b1:4,d1:12,b2:4,d2:13}],
+    [{ecb:18,b1:4,d1:68,b2:2,d2:69},{ecb:26,b1:4,d1:43,b2:1,d2:44},{ecb:24,b1:6,d1:19,b2:2,d2:20},{ecb:28,b1:6,d1:15,b2:2,d2:16}],
+  ];
+
+  function encodeData(bytes, version, ec){
+    // Mode: byte (0100), character count, data, terminator, padding
+    const cap = DATA_CAP[version][ec];
+    const ccBits = version<10 ? 8 : 16;
+    let bits = [];
+    // Mode indicator
+    pushBits(bits, 4, 0b0100);
+    // Character count
+    pushBits(bits, ccBits, bytes.length);
+    // Data
+    for(const b of bytes) pushBits(bits, 8, b);
+    // Terminator
+    for(let i=0;i<4&&bits.length<cap*8;i++) bits.push(0);
+    // Byte align
+    while(bits.length%8) bits.push(0);
+    // Padding codewords
+    let pad=0;
+    while(bits.length<cap*8){
+      pushBits(bits, 8, pad?0x11:0xEC);
+      pad=1-pad;
+    }
+    // Convert to codewords
+    const cw=[];
+    for(let i=0;i<bits.length;i+=8){
+      let b=0;
+      for(let j=0;j<8;j++) b=(b<<1)|bits[i+j];
+      cw.push(b);
+    }
+    return addEC(cw, version, ec);
+  }
+
+  function pushBits(arr, n, val){
+    for(let i=n-1;i>=0;i--) arr.push((val>>i)&1);
+  }
+
+  // GF256 arithmetic for Reed-Solomon
+  const GF_EXP=new Uint8Array(512);
+  const GF_LOG=new Uint8Array(256);
+  (function(){let x=1;for(let i=0;i<255;i++){GF_EXP[i]=x;GF_LOG[x]=i;x<<=1;if(x&256)x^=285;x&=255;}for(let i=255;i<512;i++)GF_EXP[i]=GF_EXP[i-255];})();
+
+  function gfMul(a,b){return a&&b?GF_EXP[GF_LOG[a]+GF_LOG[b]]:0;}
+  function gfPoly(n){let p=[1];for(let i=0;i<n;i++){let q=[1,GF_EXP[i]];let r=new Array(p.length+q.length-1).fill(0);for(let a=0;a<p.length;a++)for(let b=0;b<q.length;b++)r[a+b]^=gfMul(p[a],q[b]);p=r;}return p;}
+
+  function rsEC(data, ecLen){
+    const gen=gfPoly(ecLen);
+    let rem=[...data,...new Array(ecLen).fill(0)];
+    for(let i=0;i<data.length;i++){
+      const c=rem[i];
+      if(c) for(let j=0;j<gen.length;j++) rem[i+j]^=gfMul(gen[j],c);
+    }
+    return rem.slice(data.length);
+  }
+
+  function addEC(data, version, ec){
+    const info = BLOCKS[version][ec];
+    const ecb=info.ecb;
+    const b1=info.b1||0, d1=info.d1||0;
+    const b2=info.b2||0, d2=info.d2||d1;
+
+    const blocks=[];
+    let pos=0;
+    for(let i=0;i<b1;i++){blocks.push(data.slice(pos,pos+d1));pos+=d1;}
+    for(let i=0;i<b2;i++){blocks.push(data.slice(pos,pos+d2));pos+=d2;}
+
+    const ecBlocks=blocks.map(b=>rsEC(b,ecb));
+
+    // Interleave data
+    const maxD=Math.max(d1,d2);
+    const result=[];
+    for(let i=0;i<maxD;i++) for(const b of blocks) if(i<b.length) result.push(b[i]);
+    for(let i=0;i<ecb;i++) for(const b of ecBlocks) result.push(b[i]);
+    return result;
+  }
+
+  // ---- Matrix building ----
+  function buildMatrix(data, version){
+    const size = version*4+17;
+    const m = Array.from({length:size},()=>new Array(size).fill(-1)); // -1=unset
+    const f = Array.from({length:size},()=>new Array(size).fill(false)); // functional
+
+    addFinder(m,f,0,0);
+    addFinder(m,f,size-7,0);
+    addFinder(m,f,0,size-7);
+    addSeparators(m,f,size);
+    addTimingPatterns(m,f,size);
+    addAlignmentPatterns(m,f,version,size);
+    addDarkModule(m,f,version,size);
+    reserveFormatArea(m,f,size);
+
+    // Place data bits
+    let bitIdx=0;
+    const bits=[];
+    for(const b of data) for(let i=7;i>=0;i--) bits.push((b>>i)&1);
+    // Remainder bits
+    const REM=[0,0,7,7,7,7,7,0,0,0,0,0,0,0,3,3,3,3,3,3,3,4,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3];
+    for(let i=0;i<REM[version];i++) bits.push(0);
+
+    let dir=-1; // -1=up, 1=down
+    let col=size-1;
+    while(col>0){
+      if(col===6) col--;
+      for(let row=dir===-1?size-1:0; dir===-1?row>=0:row<size; row+=dir){
+        for(let c=0;c<2;c++){
+          const cc=col-c;
+          if(!f[row][cc]&&bitIdx<bits.length){
+            m[row][cc]=bits[bitIdx++];
+          }
+        }
+      }
+      dir=-dir; col-=2;
+    }
+    return m;
+  }
+
+  function setFunc(m,f,r,c,v){m[r][c]=v;f[r][c]=true;}
+
+  function addFinder(m,f,row,col){
+    for(let r=0;r<7;r++) for(let c=0;c<7;c++){
+      const v=(r===0||r===6||c===0||c===6||(r>=2&&r<=4&&c>=2&&c<=4))?1:0;
+      setFunc(m,f,row+r,col+c,v);
+    }
+  }
+
+  function addSeparators(m,f,size){
+    for(let i=0;i<8;i++){
+      const coords=[[7,i],[i,7],[size-8,i],[size-1-i,7],[7,size-1-i],[i,size-8]];
+      for(const [r,c] of coords){if(r>=0&&r<size&&c>=0&&c<size) setFunc(m,f,r,c,0);}
+    }
+  }
+
+  function addTimingPatterns(m,f,size){
+    for(let i=8;i<size-8;i++){
+      setFunc(m,f,6,i,i%2===0?1:0);
+      setFunc(m,f,i,6,i%2===0?1:0);
+    }
+  }
+
+  const ALIGN_POS=[null,[],[6,18],[6,22],[6,26],[6,30],[6,34],[6,22,38],[6,24,42],[6,28,46],[6,32,50]];
+
+  function addAlignmentPatterns(m,f,version,size){
+    if(version<2) return;
+    const pos=ALIGN_POS[version]||[];
+    for(const r of pos) for(const c of pos){
+      if(f[r][c]) continue;
+      for(let dr=-2;dr<=2;dr++) for(let dc=-2;dc<=2;dc++){
+        const v=(dr===-2||dr===2||dc===-2||dc===2||dr===0&&dc===0)?1:0;
+        setFunc(m,f,r+dr,c+dc,v);
+      }
+    }
+  }
+
+  function addDarkModule(m,f,version,size){setFunc(m,f,size-8,8,1);}
+  function reserveFormatArea(m,f,size){
+    for(let i=0;i<9;i++){setFunc(m,f,8,i,0);setFunc(m,f,i,8,0);}
+    for(let i=0;i<8;i++){setFunc(m,f,8,size-1-i,0);setFunc(m,f,size-1-i,8,0);}
+  }
+
+  function applyBestMask(matrix, version, ec){
+    const size=matrix[0].length;
+    const FORMAT_EC=[1,0,3,2];
+    const ecBits=FORMAT_EC[ec];
+    let best=null, bestPenalty=Infinity, bestMask=0;
+    for(let mask=0;mask<8;mask++){
+      const m=matrix.map(r=>[...r]);
+      applyMask(m,mask);
+      applyFormatInfo(m,size,ecBits,mask);
+      const p=penalty(m,size);
+      if(p<bestPenalty){bestPenalty=p;best=m.map(r=>[...r]);bestMask=mask;}
+    }
+    return best.map(r=>r.map(v=>v===1));
+  }
+
+  function applyMask(m,mask){
+    const size=m.length;
+    const fns=[(r,c)=>(r+c)%2===0,(r,c)=>r%2===0,(r,c)=>c%3===0,(r,c)=>(r+c)%3===0,
+               (r,c)=>(Math.floor(r/2)+Math.floor(c/3))%2===0,(r,c)=>(r*c)%2+(r*c)%3===0,
+               (r,c)=>((r*c)%2+(r*c)%3)%2===0,(r,c)=>((r+c)%2+(r*c)%3)%2===0];
+    const fn=fns[mask];
+    for(let r=0;r<size;r++) for(let c=0;c<size;c++){
+      if(m[r][c]!==-1&&!isFunctional(m,r,c,size)&&fn(r,c)) m[r][c]^=1;
+    }
+  }
+
+  // We need to track functional bits separately; simplified: re-build functional map
+  function isFunctional(m,r,c,size){
+    // Finder patterns + separators
+    if(r<9&&c<9||r<9&&c>size-9||r>size-9&&c<9) return true;
+    // Timing
+    if(r===6||c===6) return true;
+    // Dark module
+    if(r===size-8&&c===8) return true;
+    // Format info
+    if(r===8&&(c<9||c>size-9)||c===8&&(r<9||r>size-9)) return true;
+    return false;
+  }
+
+  function applyFormatInfo(m,size,ec,mask){
+    const data=(ec<<3)|mask;
+    const g=0b10100110111;
+    let rem=data<<10;
+    for(let i=14;i>=10;i--) if(rem&(1<<i)) rem^=g<<(i-10);
+    const format=((data<<10)|rem)^0b101010000010010;
+    const bits=[];
+    for(let i=14;i>=0;i--) bits.push((format>>i)&1);
+    const pos1=[[8,0],[8,1],[8,2],[8,3],[8,4],[8,5],[8,7],[8,8],[7,8],[5,8],[4,8],[3,8],[2,8],[1,8],[0,8]];
+    const pos2=[[size-1,8],[size-2,8],[size-3,8],[size-4,8],[size-5,8],[size-6,8],[size-7,8],[size-8,8],[8,size-8],[8,size-7],[8,size-6],[8,size-5],[8,size-4],[8,size-3],[8,size-2]];
+    for(let i=0;i<15;i++){m[pos1[i][0]][pos1[i][1]]=bits[i];m[pos2[i][0]][pos2[i][1]]=bits[i];}
+  }
+
+  function penalty(m,size){
+    let p=0;
+    // Rule 1: 5+ consecutive same
+    for(let r=0;r<size;r++){let run=1;for(let c=1;c<size;c++){if(m[r][c]===m[r][c-1])run++;else{if(run>=5)p+=3+run-5;run=1;}if(run>=5)p+=3+run-5;}};
+    for(let c=0;c<size;c++){let run=1;for(let r=1;r<size;r++){if(m[r][c]===m[r-1][c])run++;else{if(run>=5)p+=3+run-5;run=1;}if(run>=5)p+=3+run-5;}};
+    // Rule 2: 2x2 blocks
+    for(let r=0;r<size-1;r++) for(let c=0;c<size-1;c++) if(m[r][c]===m[r+1][c]&&m[r][c]===m[r][c+1]&&m[r][c]===m[r+1][c+1]) p+=3;
+    return p;
+  }
+
+  // Draw on load
+  window.addEventListener('load',function(){
+    drawQR('flyer-qr','https://ngaranasi.vercel.app#book',80,'#0c7a6d','#ffffff');
+  });
+})();
+</script>

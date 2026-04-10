@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ngara Nasi – Flyer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  :root{
+    --teal:#0c7a6d;
+    --teal2:#0fa396;
+    --teal-lt:#e4f5f3;
+    --teal-md:#b2e4df;
+    --gold:#e8a020;
+    --gold-lt:#fef3dc;
+    --white:#fff;
+    --text:#0f1f1d;
+    --muted:#5a7571;
+    --border:#d0ece9;
+    --bg:#f6fcfb;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:#dceeed;
+    min-height:100vh;
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    padding:40px 20px;
+    font-family:'DM Sans',sans-serif;
+  }
+  .hint{font-size:.75rem;color:#6a8a88;margin-bottom:18px;letter-spacing:.5px;}
+
+  .flyer{
+    width:420px;
+    background:var(--white);
+    border-radius:6px;
+    overflow:hidden;
+    box-shadow:0 24px 64px rgba(0,0,0,.16),0 4px 16px rgba(0,0,0,.08);
+  }
+
+  /* TOP */
+  .top{
+    background:var(--teal);
+    padding:30px 30px 24px;
+    position:relative;overflow:hidden;
+  }
+  .top::before{
+    content:'';position:absolute;
+    top:-60px;right:-60px;
+    width:180px;height:180px;
+    background:rgba(255,255,255,.07);border-radius:50%;
+  }
+  .top::after{
+    content:'';position:absolute;
+    bottom:-40px;left:40px;
+    width:120px;height:120px;
+    background:rgba(255,255,255,.05);border-radius:50%;
+  }
+
+  .logo-row{
+    display:flex;align-items:center;gap:11px;
+    margin-bottom:4px;position:relative;z-index:1;
+  }
+  .logo-icon{
+    width:46px;height:46px;
+    background:rgba(255,255,255,.15);
+    border-radius:13px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:24px;
+    border:1px solid rgba(255,255,255,.2);
+  }
+  .biz-name{
+    font-family:'Playfair Display',serif;
+    font-size:2.1rem;font-weight:900;
+    color:var(--white);line-height:1;
+    letter-spacing:-.3px;
+  }
+  .biz-name span{color:var(--gold);}
+  .tagline{
+    font-size:.75rem;
+    color:rgba(255,255,255,.7);
+    font-weight:300;letter-spacing:1px;
+    text-transform:uppercase;
+    margin-top:5px;
+    position:relative;z-index:1;
+  }
+
+  /* PROMO */
+  .promo{
+    background:var(--gold);
+    padding:8px 30px;
+    display:flex;align-items:center;justify-content:center;gap:8px;
+  }
+  .promo-txt{
+    font-size:.75rem;font-weight:700;
+    color:#7a5010;letter-spacing:.5px;text-transform:uppercase;
+  }
+
+  /* BODY */
+  .body{padding:20px 28px 22px;}
+
+  .lbl{
+    font-size:.62rem;font-weight:700;
+    letter-spacing:1.3px;text-transform:uppercase;
+    color:var(--teal);margin-bottom:10px;
+  }
+
+  .svcs{
+    display:grid;grid-template-columns:1fr 1fr;gap:7px;
+    margin-bottom:18px;
+  }
+  .svc{
+    display:flex;align-items:center;gap:7px;
+    background:var(--teal-lt);
+    border:1px solid var(--teal-md);
+    border-radius:9px;padding:8px 11px;
+  }
+  .svc-ico{font-size:14px;line-height:1;}
+  .svc-name{font-size:.77rem;font-weight:700;color:var(--text);}
+  .svc-note{font-size:.65rem;color:var(--muted);margin-top:1px;}
+
+  hr{border:none;border-top:1px solid var(--border);margin:16px 0;}
+
+  .prices{margin-bottom:0;}
+  .prow{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:5px 0;border-bottom:1px dashed var(--border);
+  }
+  .prow:last-child{border:none;}
+  .pn{font-size:.79rem;color:var(--text);}
+  .pp{font-size:.79rem;font-weight:700;color:var(--teal);}
+
+  /* CONTACT */
+  .contact{
+    background:var(--teal);
+    border-radius:12px;
+    padding:16px 18px;
+    margin-top:16px;
+  }
+  .ct-lbl{
+    font-size:.62rem;font-weight:700;letter-spacing:1.2px;
+    text-transform:uppercase;color:rgba(255,255,255,.55);
+    margin-bottom:11px;
+  }
+  .ct-row{
+    display:flex;align-items:center;gap:10px;margin-bottom:8px;
+  }
+  .ct-row:last-child{margin-bottom:0;}
+  .ct-ico{
+    width:28px;height:28px;min-width:28px;
+    background:rgba(255,255,255,.15);
+    border-radius:8px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;
+  }
+  .ct-sub{font-size:.63rem;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.5px;margin-bottom:1px;}
+  .ct-val{font-size:.86rem;font-weight:700;color:var(--white);}
+
+  /* QR ROW */
+  .qr-row{
+    display:flex;align-items:center;gap:12px;
+    margin-top:12px;
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:10px;
+    padding:10px 14px;
+  }
+  #flyer-qr{background:var(--white);border-radius:6px;padding:4px;flex-shrink:0;}
+  .qr-info .qi-lbl{font-size:.62rem;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px;}
+  .qr-info .qi-val{font-size:.82rem;font-weight:700;color:var(--white);}
+  .qr-info .qi-sub{font-size:.68rem;color:rgba(255,255,255,.6);margin-top:2px;}
+
+  /* FOOTER */
+  .foot{
+    background:var(--bg);
+    border-top:1px solid var(--border);
+    padding:10px 28px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .foot-loc{font-size:.7rem;color:var(--muted);}
+  .foot-loc strong{color:var(--teal);font-weight:700;}
+  .mpesa{
+    display:flex;align-items:center;gap:5px;
+    background:var(--teal-lt);
+    border:1px solid var(--teal-md);
+    padding:3px 10px;border-radius:20px;
+    font-size:.68rem;font-weight:700;color:var(--teal);
+  }
+
+  @media print{
+    body{background:white;padding:0;}
+    .hint{display:none;}
+    .flyer{box-shadow:none;border-radius:0;width:148mm;}
+  }
+</style>
+</head>
+<body>
+
+<!---<p class="hint">💡 Open in browser → Ctrl+P / Cmd+P → set paper to A5 to print</p>-->
+
+<div class="flyer">
+
+  <div class="top">
+    <div class="logo-row">
+      <div class="logo-icon">🧺</div>
+      <div class="biz-name">Ngara <span>Nasi</span></div>
+    </div>
+    <div class="tagline">Professional Cleaning & Laundry · Roysambu, Nairobi</div>
+  </div>
+
+  <!--<div class="promo">
+    <span class="promo-txt">✦ First-time clients get 15% off — mention this flyer</span>
+  </div>-->
+
+  <div class="body">
+
+    <div class="lbl">Our Services</div>
+    <div class="svcs">
+      <div class="svc"><span class="svc-ico">🫧</span><div><div class="svc-name">Laundry</div><div class="svc-note">wash dry& fold</div></div></div>
+      <div class="svc"><span class="svc-ico">👔</span><div><div class="svc-name">Ironing</div><div class="svc-note">Crisp & neat</div></div></div>
+      <div class="svc"><span class="svc-ico">🛋️</span><div><div class="svc-name">Sofa Clean</div><div class="svc-note">Steam deep clean</div></div></div>
+      <div class="svc"><span class="svc-ico">🛏️</span><div><div class="svc-name">Mattress</div><div class="svc-note">Sanitize & deodorize</div></div></div>
+      <div class="svc"><span class="svc-ico">🏠</span><div><div class="svc-name">House Clean</div><div class="svc-note">General & deep</div></div></div>
+      <div class="svc"><span class="svc-ico">🏢</span><div><div class="svc-name">Office Clean</div><div class="svc-note">After hours</div></div></div>
+      <div class="svc"><span class="svc-ico">🔑</span><div><div class="svc-name">Move In/Out</div><div class="svc-note">Full property</div></div></div>
+      <div class="svc"><span class="svc-ico">🏡</span><div><div class="svc-name">Airbnb</div><div class="svc-note">Turnover clean</div></div></div>
+    </div>
+
+    <hr/>
+
+    <div class="lbl">Starting Prices</div>
+    <div class="prices">
+      <div class="prow"><span class="pn">Laundry (per kg)</span><span class="pp">KSH 50–80</span></div>
+      <div class="prow"><span class="pn">House Cleaning (1–2 bed)</span><span class="pp">KSH 1,000+</span></div>
+      <div class="prow"><span class="pn">Sofa Cleaning (3-seater)</span><span class="pp">KSH 1,000+</span></div>
+      <div class="prow"><span class="pn">Mattress (single)</span><span class="pp">KSH 500+</span></div>
+      <div class="prow"><span class="pn">Move In / Move Out</span><span class="pp">KSH 3,000+</span></div>
+    </div>
+
+    <div class="contact">
+      <div class="ct-lbl">📞 Get in Touch</div>
+      <div class="ct-row">
+        <div class="ct-ico">📱</div>
+        <div><div class="ct-sub">WhatsApp / Call / SMS</div><div class="ct-val">+254 791 020 406</div></div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-ico">✉️</div>
+        <div><div class="ct-sub">Email</div><div class="ct-val">ngaranasiservices@gmail.com</div></div>
+      </div>
+      <div class="qr-row">
+        <div id="flyer-qr"></div>
+        <div class="qr-info">
+          <div class="qi-lbl">📱 Scan to Book Online</div>
+          <div class="qi-val">ngaranasi.vercel.app</div>
+          <div class="qi-sub">Point your camera to visit our booking page</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="foot">
+    <div class="foot-loc">📍 <strong>Roysambu</strong>, Nairobi</div>
+    <div class="mpesa">✅ M-Pesa Accepted</div>
+  </div>
+
+</div>
+
+<script>
+window.addEventListener('load',function(){
+  try{
+    new QRCode(document.getElementById('flyer-qr'),{
+      text:'https://ngaranasi.vercel.app#book',
+      width:76,height:76,
+      colorDark:'#0c7a6d',
+      colorLight:'#ffffff',
+      correctLevel:QRCode.CorrectLevel.M
+    });
+  }catch(e){
+    document.getElementById('flyer-qr').innerHTML='<div style="width:76px;height:76px;background:#e4f5f3;display:flex;align-items:center;justify-content:center;font-size:10px;color:#0c7a6d;font-weight:700;text-align:center;border-radius:4px;padding:6px;">ngaranasi.vercel.app</div>';
+  }
+});
+</script>
+</body>
+</html>
